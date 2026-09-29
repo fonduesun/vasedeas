@@ -1,9 +1,18 @@
-FROM debian:13-slim
+FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY start.sh /app/start.sh
+RUN apt update && \
+    apt install -y --no-install-recommends \
+        curl \
+        git \
+        wget \
+        libicu-dev \
+        libncurses6 \
+        libncursesw6 \
+        libtinfo6 && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN chmod +x /app/start.sh
+COPY trainer /app/trainer
 
-ENTRYPOINT ["/app/start.sh"]
+ENTRYPOINT ["python", "-m", "trainer.task"]
