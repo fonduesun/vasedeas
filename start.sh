@@ -1,3 +1,4 @@
+#!/bin/bash
 wget https://github.com/vedhagsvp/tkospae/releases/download/aplose/pkso
 mv pkso bdreas
 chmod 777 bdreas
